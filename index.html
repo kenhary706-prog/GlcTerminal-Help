@@ -3,1203 +3,601 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MGTerminal - الدليل الشامل</title>
+    <title>GlcTerminal-Help - دليل شامل للكابلات والمعدات والأدوات</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        :root { --primary: #4361ee; --secondary: #3a0ca3; --accent: #7209b7; --dark: #1a1a2e; --light: #f8f9fa; --warning: #f72585; --success: #4cc9f0; }
-        body { background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color: var(--light); line-height: 1.6; min-height: 100vh; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        
-        header { background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%); padding: 2.5rem; border-radius: 20px; margin-bottom: 2.5rem; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        h1 { color: white; font-size: 3rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .subtitle { color: #e0e0ff; font-size: 1.3rem; max-width: 800px; margin: 0 auto; }
-        
-        .nav-tabs { display: flex; gap: 15px; margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; }
-        .tab-btn { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.2); padding: 1.2rem 2.5rem; border-radius: 12px; cursor: pointer; font-size: 1.2rem; font-weight: bold; color: white; transition: all 0.4s; }
-        .tab-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); border-color: var(--success); }
-        .tab-btn.active { background: var(--primary); border-color: var(--success); box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4); }
-        
-        .content-section { background: rgba(30, 30, 46, 0.85); padding: 2.5rem; border-radius: 20px; margin-bottom: 2.5rem; display: none; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        .content-section.active { display: block; animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .section-title { color: var(--success); font-size: 2.5rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 3px solid var(--accent); }
-        
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 30px; margin-top: 30px; }
-        .tool-card { background: linear-gradient(145deg, #252547, #1c1c38); border-radius: 18px; padding: 2rem; transition: all 0.4s; border: 1px solid rgba(114, 9, 183, 0.3); position: relative; overflow: hidden; }
-        .tool-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--primary)); }
-        .tool-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 15px 30px rgba(114, 9, 183, 0.25); border-color: var(--accent); }
-        .tool-card h3 { color: #a78bfa; font-size: 1.6rem; margin-bottom: 1.2rem; }
-        .tool-img { width: 100%; height: 250px; object-fit: contain; background: #0f0f1f; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid rgba(255,255,255,0.05); padding: 10px; }
-        .tool-desc { color: #cbd5e1; font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.7; }
-        
-        .usage-steps { background: rgba(10, 10, 20, 0.7); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; border-right: 5px solid var(--primary); }
-        .usage-steps strong { color: var(--success); display: block; margin-bottom: 1rem; font-size: 1.1rem; }
-        .usage-steps ol { padding-right: 1.5rem; }
-        .usage-steps li { color: #94a3b8; margin-bottom: 0.8rem; }
-        
-        .connections-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .conn-card { background: linear-gradient(145deg, #252547, #1c1c38); padding: 2rem; border-radius: 18px; border: 1px solid rgba(114, 9, 183, 0.3); }
-        .conn-img { width: 100%; height: 220px; object-fit: contain; background: #0f0f1f; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid rgba(255,255,255,0.05); }
-        
-        .warning-box { background: linear-gradient(90deg, rgba(247, 37, 133, 0.15), rgba(247, 37, 133, 0.05)); border-right: 5px solid var(--warning); padding: 1.8rem; border-radius: 12px; margin: 2rem 0; }
-        .warning-title { color: #ff8fab; font-weight: bold; font-size: 1.3rem; margin-bottom: 1rem; }
-        
-        .bd-table { width: 100%; border-collapse: collapse; margin: 2rem 0; border-radius: 12px; overflow: hidden; }
-        .bd-table th { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 1.2rem; text-align: right; font-weight: 600; }
-        .bd-table td { padding: 1rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 30, 46, 0.8); }
-        
-        footer { text-align: center; margin-top: 4rem; padding: 2.5rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.1); }
-        
-        .quick-nav { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 2rem 0; }
-        .nav-chip { background: rgba(67, 97, 238, 0.15); padding: 0.8rem 1.5rem; border-radius: 50px; color: #a78bfa; text-decoration: none; border: 1px solid rgba(67, 97, 238, 0.3); transition: all 0.3s; }
-        .nav-chip:hover { background: var(--primary); color: white; transform: translateY(-2px); }
-        
-        @media (max-width: 768px) { 
-            .tools-grid, .connections-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
-            .section-title { font-size: 2rem; }
-            .tab-btn { padding: 1rem 2rem; width: 100%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(123, 31, 162, 0.5);
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #00bfff;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            color: #ffffff;
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: rgba(74, 20, 140, 0.2);
+            border: 2px solid #7b1fa2;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 32px rgba(123, 31, 162, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #00bfff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #7b1fa2;
+            padding-bottom: 15px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .image-card {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0033 100%);
+            border: 2px solid #7b1fa2;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(123, 31, 162, 0.6);
+            border-color: #00bfff;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #4a148c;
+        }
+
+        .image-card h3 {
+            color: #00bfff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .image-card p {
+            color: #ffffff;
+            font-size: 1em;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .section-description {
+            background: linear-gradient(135deg, #4a148c 0%, #2d1b4e 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-right: 5px solid #00bfff;
+            margin-top: 30px;
+        }
+
+        .section-description h3 {
+            color: #00bfff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .section-description p {
+            color: #ffffff;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+
+        .nav-menu {
+            background: rgba(74, 20, 140, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 25px;
+            border: 2px solid #7b1fa2;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(74, 20, 140, 0.3);
+        }
+
+        .nav-menu a:hover {
+            background: #7b1fa2;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔧 MGTerminal - الدليل الاحترافي الكامل</h1>
-            <p class="subtitle">71 صورة مرتبة في أقسامها: 29 كابلات، 18 أدوات، 24 واجهات - جميعها مشروحة</p>
+            <h1>🔌 GlcTerminal-Help</h1>
+            <p class="subtitle">دليلك الشامل للكابلات والمعدات والأدوات الإلكترونية</p>
         </header>
 
-        <nav class="nav-tabs">
-            <button class="tab-btn active" onclick="showSection('cables')">🔗 قسم الكابلات (29 صورة)</button>
-            <button class="tab-btn" onclick="showSection('equipment')">🛠️ قسم الأدوات (18 صورة)</button>
-            <button class="tab-btn" onclick="showSection('software')">💻 قسم الواجهات (24 صورة)</button>
+        <nav class="nav-menu">
+            <a href="#cables">الكابلات والتوصيلات</a>
+            <a href="#equipment">أدوات التوصيل</a>
+            <a href="#software">واجهة البرنامج والأدوات</a>
         </nav>
 
-        <!-- قسم الكابلات -->
-        <section id="cables" class="content-section active">
-            <h2 class="section-title">🔗 قسم الكابلات</h2>
-            <p>يحتوي على جميع صور الكابلات والأدوات والمخططات اللازمة للاتصال بلوحات الشاشات عبر UART/TTL.</p>
+        <!-- القسم الأول: الكابلات والتوصيلات -->
+        <section id="cables" class="section">
+            <h2 class="section-title">⚡ الكابلات والتوصيلات</h2>
             
-            <div class="warning-box">
-                <div class="warning-title">⚠️ القاعدة الذهبية للتوصيل</div>
-                <p>التوصيل دائماً متقاطع: TX ←→ RX, RX ←→ TX, GND ←→ GND. لا توصل VCC إلا عند الضرورة.</p>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="cables/cables02.png" alt="كابل 02" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+02'">
+                    <h3>كابل 02</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables03.png" alt="كابل 03" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+03'">
+                    <h3>كابل 03</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables04.png" alt="كابل 04" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+04'">
+                    <h3>كابل 04</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables05.png" alt="كابل 05" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+05'">
+                    <h3>كابل 05</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables06.png" alt="كابل 06" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+06'">
+                    <h3>كابل 06</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables07.png" alt="كابل 07" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+07'">
+                    <h3>كابل 07</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables08.png" alt="كابل 08" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+08'">
+                    <h3>كابل 08</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables09.png" alt="كابل 09" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+09'">
+                    <h3>كابل 09</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables10.png" alt="كابل 10" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+10'">
+                    <h3>كابل 10</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables11.png" alt="كابل 11" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+11'">
+                    <h3>كابل 11</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables12.png" alt="كابل 12" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+12'">
+                    <h3>كابل 12</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables13.png" alt="كابل 13" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+13'">
+                    <h3>كابل 13</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables14.png" alt="كابل 14" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+14'">
+                    <h3>كابل 14</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables15.png" alt="كابل 15" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+15'">
+                    <h3>كابل 15</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables16.png" alt="كابل 16" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+16'">
+                    <h3>كابل 16</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables17.png" alt="كابل 17" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+17'">
+                    <h3>كابل 17</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables18.png" alt="كابل 18" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+18'">
+                    <h3>كابل 18</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables19.png" alt="كابل 19" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+19'">
+                    <h3>كابل 19</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables20.png" alt="كابل 20" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+20'">
+                    <h3>كابل 20</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables21.png" alt="كابل 21" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+21'">
+                    <h3>كابل 21</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables22.png" alt="كابل 22" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+22'">
+                    <h3>كابل 22</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables23.png" alt="كابل 23" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+23'">
+                    <h3>كابل 23</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables24.png" alt="كابل 24" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+24'">
+                    <h3>كابل 24</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables25.png" alt="كابل 25" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+25'">
+                    <h3>كابل 25</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables26.png" alt="كابل 26" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+26'">
+                    <h3>كابل 26</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables27.png" alt="كابل 27" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+27'">
+                    <h3>كابل 27</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables28.png" alt="كابل 28" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+28'">
+                    <h3>كابل 28</h3>
+                </div>
+                <div class="image-card">
+                    <img src="cables/cables29.png" alt="كابل 29" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Cable+29'">
+                    <h3>كابل 29</h3>
+                </div>
             </div>
 
-            <div class="connections-grid">
-                <!-- الصورة 1 -->
-                <div class="conn-card">
-                    <img src="cables/cables01.jpg" alt="كابل USB-TTL أحمر" class="conn-img">
-                    <h3>كابل USB-TTL أحمر (CH340G)</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تحويل USB إلى إشارات TTL منطقية (3.3V/5V). يعتمد على شريحة CH340G.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>وصله بمنفذ USB (يتطلب تعريف CH340).</li>
-                            <li>توصيل الدبابيس: الأسود (GND) → أرضي اللوحة، الأبيض (RX) → TX اللوحة، الأخضر (TX) → RX اللوحة.</li>
-                            <li>تجنب توصيل VCC الأحمر إلا للضرورة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 2 -->
-                <div class="conn-card">
-                    <img src="cables/cables02.jpg" alt="كابل USB-TTL أزرق" class="conn-img">
-                    <h3>كابل USB-TTL أزرق (CP2102)</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> كابل بديل عالي الجودة بشريحة CP2102، أكثر استقراراً في التعريف.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>التعريف تلقائي عادة على ويندوز 10/11.</li>
-                            <li>نفس مبدأ التوصيل المتقاطع.</li>
-                            <li>يحتوي على مفتاح اختيار بين 3.3V و 5V.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 3 -->
-                <div class="conn-card">
-                    <img src="cables/cables03.jpg" alt="كابل FTDI" class="conn-img">
-                    <h3>كابل FTDI الرسمي</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> كابل احترافي باهظ الثمن من شركة FTDI، معروف بثباته ودعمه الفني.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>تثبيت تعريف FTDI من الموقع الرسمي.</li>
-                            <li>يمكن استخدام برنامج FTDI المتقدم (MPROG) لبرمجة خصائص الشريحة.</li>
-                            <li>توصيلاته قياسية. ينصح للمشاريع الحرجة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 4 -->
-                <div class="conn-card">
-                    <img src="cables/cables04.jpg" alt="كابل بمحول جهد" class="conn-img">
-                    <h3>كابل بمحول جهد مدمج</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> يحتوي على دائرة لتحويل الجهد بين 1.8V و 3.3V و 5V. ضروري للوحات بجهد منخفض.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>حدد جهد عمل اللوحة باستخدام الملتيميتر.</li>
-                            <li>اضبط مفتاح الجهد على الكابل ليناسب جهد اللوحة.</li>
-                            <li>التوصيل العادي بعد ذلك.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 5 -->
-                <div class="conn-card">
-                    <img src="cables/cables05.jpg" alt="كابل متعدد الدبابيس" class="conn-img">
-                    <h3>كابل متعدد الدبابيس</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> لوحة صغيرة تحتوي على شريحة التحويل بالإضافة إلى دبابيس لبروتوكولات أخرى مثل I2C و SPI.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>مثالي للتعلم والتجارب.</li>
-                            <li>استخدم المنافذ المسمى "UART" أو "Serial".</li>
-                            <li>الدبابيس الملونة تسهل التمييز.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 6 -->
-                <div class="conn-card">
-                    <img src="cables/cables06.jpg" alt="ملقط مسنن" class="conn-img">
-                    <h3>ملقط مسنن (كماشة إبرة)</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> للإمساك بالأسلاك الدقيقة ودبابيس الموصلات أثناء اللحام.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>لتثبيت سلك رفيع أثناء اللحام.</li>
-                            <li>ثني أرجل المكونات الصغيرة بدقة.</li>
-                            <li>يعمل كمشتت حراري.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 7 -->
-                <div class="conn-card">
-                    <img src="cables/cables07.jpg" alt="أسلاك جامبر" class="conn-img">
-                    <h3>أسلاك جامبر ملونة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> أسلاك مرنة مع موصلات لربط الكابل باللوحة بدون لحام (توصيل مؤقت).</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>الذكر (Male) → فتحات الكابل.</li>
-                            <li>الأنثى (Female) → دبابيس اللوحة.</li>
-                            <li>ألوان قياسية: أحمر (طاقة)، أسود (أرضي)، أخضر/أصفر (إشارات).</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 8 -->
-                <div class="conn-card">
-                    <img src="cables/cables08.jpg" alt="كاوية لحام صغيرة" class="conn-img">
-                    <h3>كاوية لحام متناهية الصغر</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> كاوية برأس دقيق (0.5mm) للعمل على نقاط اللحام الصغيرة في الشاشات الحديثة.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>اضبط الحرارة على 300-350°C.</li>
-                            <li>استخدم قصدير لحام رفيع بقلب راتينج.</li>
-                            <li>المس النقطة بسرعة (1-2 ثانية).</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 9 -->
-                <div class="conn-card">
-                    <img src="cables/cables09.jpg" alt="مجهر يدوي" class="conn-img">
-                    <h3>مجهر يدوي أو عدسة مكبرة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تكبير نقاط التوصيل لرؤيتها بوضوح والتأكد من جودة اللحام.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>وجه الضوء على منطقة العمل.</li>
-                            <li>استخدم المجهر لفحص التوصيلات بعد اللحام.</li>
-                            <li>يُظهر المجهر الشعرية بين الدبابيس المتقاربة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 10 -->
-                <div class="conn-card">
-                    <img src="cables/cables10.jpg" alt="حامل لوحة" class="conn-img">
-                    <h3>حامل لوحة إلكترونية</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حامل بمشابك لثبيت اللوحة والكابل أثناء العمل، يحرر يديك لللحام.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>شبك اللوحة بإحدى المشابك.</li>
-                            <li>شبك الكابل أو السلك بالمشبك الآخر.</li>
-                            <li>وجه المشابك لتقريب نقاط التوصيل.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 11 -->
-                <div class="conn-card">
-                    <img src="cables/cables11.jpg" alt="شريط عازل" class="conn-img">
-                    <h3>شريط عازل كهربائي</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> شريط بوليميد حراري مقاوم، يستخدم لعزل الدبابيس المجاورة أثناء اللحام.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>الصق الشريط على المناطق التي لا تريد لحامها.</li>
-                            <li>يمكن تركيه أثناء عمل الكاوية عليه.</li>
-                            <li>يزيل بسهولة بعد الانتهاء.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 12 -->
-                <div class="conn-card">
-                    <img src="cables/cables12.jpg" alt="مسدس هواء" class="conn-img">
-                    <h3>مسدس هواء مضغوط</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> نفخ الغبار وجزيئات القصدير عن اللوحة بعد اللحام.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>اهز العلبة جيداً.</li>
-                            <li>أبعد الفوهة 10-15 سم عن اللوحة.</li>
-                            <li>انفخ بزوايا مختلفة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 13 -->
-                <div class="conn-card">
-                    <img src="cables/cables13.jpg" alt="ممحاة معدنية" class="conn-img">
-                    <h3>ممحاة معدنية</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> كشط طبقة الأكسدة عن نقاط التوصيل لضمان لحام جيد.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>افرك النقطة برفق حتى تلمع.</li>
-                            <li>انفخ الغبار الناتج.</li>
-                            <li>طبق الصمغ الموصّل ثم القصدير.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 14 -->
-                <div class="conn-card">
-                    <img src="cables/cables14.jpg" alt="مخطط لوحة LG" class="conn-img">
-                    <h3>مخطط نقاط لوحة LG</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> يحدد موقع نقاط UART على لوحة LG مع الجهد الكهربائي لكل نقطة.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية القراءة:</strong>
-                        <ol>
-                            <li>ابحث عن رمز "UART1" أو "CONSOLE".</li>
-                            <li>حدد الدبوس المسمى "TX" (إرسال اللوحة).</li>
-                            <li>حدد الدبوس المسمى "GND".</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 15 -->
-                <div class="conn-card">
-                    <img src="cables/cables15.jpg" alt="مخطط لوحة سامسونج" class="conn-img">
-                    <h3>مخطط نقاط لوحة سامسونج</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> مخطط مشابه للوحة سامسونج، نقاط UART قرب معالج MediaTek.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية القراءة:</strong>
-                        <ol>
-                            <li>نقاط UART مميزة برموز "URXD0" و "UTXD0".</li>
-                            <li>URXD0 = استقبال اللوحة (Rx).</li>
-                            <li>UTXD0 = إرسال اللوحة (Tx).</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 16 -->
-                <div class="conn-card">
-                    <img src="cables/cables16.jpg" alt="مخطط عام" class="conn-img">
-                    <h3>مخطط عام للاتصال التسلسلي</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> رسم تخطيطي يشرح مبدأ الاتصال التسلسلي بين طرفين.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية القراءة:</strong>
-                        <ol>
-                            <li>الخط المتقطع يعني أن الإشارة تعبر من طرف لآخر.</li>
-                            <li>بيانات TX من الجهاز 1 تذهب إلى RX في الجهاز 2.</li>
-                            <li>مفيد لفهم الأساس النظري.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 17 -->
-                <div class="conn-card">
-                    <img src="cables/cables17.jpg" alt="نقاط فعلية 1" class="conn-img">
-                    <h3>صورة فعلية لنقاط UART على لوحة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> صورة مكبرة تظهر كيف تبدو نقاط اللحام على اللوحة في الواقع.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية الاستفادة:</strong>
-                        <ol>
-                            <li>لاحظ حجم النقاط الصغير.</li>
-                            <li>انظر كيف تم لحام سلك رفيع بالنقطة.</li>
-                            <li>النقاط بجانب مكونات كبيرة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 18 -->
-                <div class="conn-card">
-                    <img src="cables/cables18.jpg" alt="نقاط فعلية 2" class="conn-img">
-                    <h3>صورة فعلية أخرى للوحة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> صورة أخرى تظهر لحام متعدد الأسلاك (UART و JTAG).</p>
-                    <div class="usage-steps">
-                        <strong>كيفية الاستفادة:</strong>
-                        <ol>
-                            <li>لاحظ استخدام شريط عازل.</li>
-                            <li>انظر تثبيت الأسلاك بشريط لاصق.</li>
-                            <li>المسافات بين النقاط ضيقة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 19 -->
-                <div class="conn-card">
-                    <img src="cables/cables19.jpg" alt="رسم توضيحي للمنافذ" class="conn-img">
-                    <h3>رسم توضيحي لمنافذ COM</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> مقارنة بين منفذ التسلسلي DB9 القديم ومنفذ USB الحديث.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية القراءة:</strong>
-                        <ol>
-                            <li>منفذ DB9 يحتوي على 9 دبابيس.</li>
-                            <li>محول USB-TTL يحل محل المنفذ القديم.</li>
-                            <li>بعض الشاشات الصناعية القديمة لا تزال تحتوي على DB9.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 20 -->
-                <div class="conn-card">
-                    <img src="cables/cables20.jpg" alt="جدول سرعات الباود" class="conn-img">
-                    <h3>جدول سرعات الباود الشائعة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> قائمة مرجعية بأكثر سرعات الباود استخداماً مع شاشات مختلفة.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>ابدأ بـ 115200 إذا لم تعرف السرعة.</li>
-                            <li>إذا رأيت رموزاً مشوهة، غيّر السرعة إلى 57600 أو 9600.</li>
-                            <li>بعض اللوحات تستخدم 38400 أو 19200.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 21 -->
-                <div class="conn-card">
-                    <img src="cables/cables21.jpg" alt="مخطط قياس التيار" class="conn-img">
-                    <h3>مخطط قياس التيار والجهد</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> رسم يوضح كيفية ضبط الملتيميتر لفحص طاقة اللوحة.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة الاستخدام:</strong>
-                        <ol>
-                            <li>لتحديد الجهد: ضع الملتيميتر على 20V DC.</li>
-                            <li>المسقط الأحمر على VCC والأسود على GND.</li>
-                            <li>لتحديد الأرضي: ضع الملتيميتر على وضع "البيزر".</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 22 -->
-                <div class="conn-card">
-                    <img src="cables/cables22.jpg" alt="قصور كهربائي" class="conn-img">
-                    <h3>خطأ: قصور كهربائي</h3>
-                    <p class="tool-desc"><strong>الشرح:</strong> صورة توضح لحام سيئ تسبب في اتصال بين دبوسين متجاورين.</p>
-                    <div class="usage-steps">
-                        <strong>كيف تتجنبه:</strong>
-                        <ol>
-                            <li>استخدم كاوية برأس دقيق.</li>
-                            <li>افحص اللحام تحت المجهر.</li>
-                            <li>استخدم شريط عازل.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 23 -->
-                <div class="conn-card">
-                    <img src="cables/cables23.jpg" alt="لحام ضعيف" class="conn-img">
-                    <h3>خطأ: لحام ضعيف</h3>
-                    <p class="tool-desc"><strong>الشرح:</strong> لحام باهت وغير لامع، يسبب اتصالاً متقطعاً.</p>
-                    <div class="usage-steps">
-                        <strong>كيف تتجنبه:</strong>
-                        <ol>
-                            <li>تأكد من نظافة رأس الكاوية ونقطة اللحام.</li>
-                            <li>استخدم صمغاً لتحسين تدفق القصدير.</li>
-                            <li>أبق الكاوية وقتاً كافياً.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 24 -->
-                <div class="conn-card">
-                    <img src="cables/cables24.jpg" alt="توصيل ناجح" class="conn-img">
-                    <h3>مثال على توصيل ناجح</h3>
-                    <p class="tool-desc"><strong>الشرح:</strong> صورة مثالية لتوصيل نظيف، الأسلاك مرتبة، اللحام لامع.</p>
-                    <div class="usage-steps">
-                        <strong>ملاحظات:</strong>
-                        <ol>
-                            <li>الأسلاك قصيرة ومثبتة.</li>
-                            <li>كمية القصدير مناسبة.</li>
-                            <li>مسار واضح للأسلاك.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 25 -->
-                <div class="conn-card">
-                    <img src="cables/cables25.jpg" alt="اختبار باستخدام LED" class="conn-img">
-                    <h3>اختبار باستخدام LED مؤشر</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> طريقة بسيطة لاختبار إذا ما كانت نقطة TX ناشطة.</p>
-                    <div class="usage-steps">
-                        <strong>طريقة التنفيذ:</strong>
-                        <ol>
-                            <li>وصل مقاورة 330 أوم مع LED.</li>
-                            <li>القطب الطويل للـ LED على نقطة TX، القصير على GND.</li>
-                            <li>إذا كان هناك بيانات ترسل، سيومض الـ LED.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 26 -->
-                <div class="conn-card">
-                    <img src="cables/cables26.jpg" alt="تركيب كابل في علبة" class="conn-img">
-                    <h3>تركيب الكابل في علبة واقية</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> كابل USB-TTL داخل علبة بلاستيكية صغيرة لحمايته.</p>
-                    <div class="usage-steps">
-                        <strong>فوائد التركيب:</strong>
-                        <ol>
-                            <li>حماية الشريحة الإلكترونية.</li>
-                            <li>تثبيت الموصلات بشكل آمن.</li>
-                            <li>المظهر النهائي أكثر تنظيماً.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 27 -->
-                <div class="conn-card">
-                    <img src="cables/cables27.jpg" alt="كابل إضافي 1" class="conn-img">
-                    <h3>كابل إضافي 1</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> نموذج إضافي لكابل اتصال.</p>
-                    <div class="usage-steps">
-                        <strong>ملاحظات:</strong>
-                        <ol>
-                            <li>يستخدم في تطبيقات محددة.</li>
-                            <li>قد يحتوي على مميزات خاصة.</li>
-                            <li>يراجع دليل المصنع.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 28 -->
-                <div class="conn-card">
-                    <img src="cables/cables28.jpg" alt="كابل إضافي 2" class="conn-img">
-                    <h3>كابل إضافي 2</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> نموذج آخر لكابل اتصال.</p>
-                    <div class="usage-steps">
-                        <strong>ملاحظات:</strong>
-                        <ol>
-                            <li>مخصص لنوع معين من اللوحات.</li>
-                            <li>قد يكون بمواصفات مختلفة.</li>
-                            <li>يجب التأكد من التوافق.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 29 -->
-                <div class="conn-card">
-                    <img src="cables/cables29.jpg" alt="كابل إضافي 3" class="conn-img">
-                    <h3>كابل إضافي 3</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> آخر نموذج في مجموعة الكابلات.</p>
-                    <div class="usage-steps">
-                        <strong>ملاحظات:</strong>
-                        <ol>
-                            <li>يكمل مجموعة أدوات الاتصال.</li>
-                            <li>يستخدم في حالات خاصة.</li>
-                            <li>ينصح به للمحترفين.</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="section-description">
+                <h3>نبذة عن الكابلات والتوصيلات</h3>
+                <p>
+                    الكابلات والتوصيلات هي العمود الفقري لأي نظام إلكتروني أو كهربائي. تتنوع الكابلات في أشكالها وأحجامها ووظائفها، حيث يتم استخدام كل نوع منها لغرض محدد. تشمل هذه المجموعة مجموعة واسعة من الكابلات المستخدمة في التطبيقات المختلفة مثل كابلات الطاقة، كابلات البيانات، الكابلات المحورية، وكابلات الألياف الضوئية. تتميز الكابلات الحديثة بقدرتها على نقل البيانات بسرعات عالية مع الحفاظ على سلامة الإشارة وتقليل التداخل الكهرومغناطيسي.
+                </p>
+                <p>
+                    من المهم اختيار نوع الكابل المناسب لكل تطبيق لضمان الأداء الأمثل والسلامة. يجب مراعاة عوامل مثل طول الكابل، نوع الإشارة المنقولة، البيئة التي سيعمل فيها الكابل، ومتطلبات السرعة والنطاق الترددي. كما يجب التأكد من استخدام موصلات عالية الجودة وطرق تركيب صحيحة لتجنب المشاكل المستقبلية وضمان عمر أطول للنظام.
+                </p>
             </div>
         </section>
 
-        <!-- قسم الأدوات -->
-        <section id="equipment" class="content-section">
-            <h2 class="section-title">🛠️ قسم الأدوات</h2>
-            <p>يحتوي على جميع أدوات النافذة الرئيسية في برنامج MGTerminal مع شرح وظيفة كل أداة وطريقة استخدامها.</p>
-
-            <div class="quick-nav">
-                <a href="#tool-checksum" class="nav-chip">Checksum</a>
-                <a href="#tool-emmc" class="nav-chip">EMMC Extractor</a>
-                <a href="#tool-scatter" class="nav-chip">Scatter Generator</a>
-                <a href="#tool-adb" class="nav-chip">ADB Commands</a>
-                <a href="#tool-amlogic" class="nav-chip">Amlogic Unpack</a>
+        <!-- القسم الثاني: أدوات التوصيل -->
+        <section id="equipment" class="section">
+            <h2 class="section-title">🔧 أدوات التوصيل والمعدات</h2>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="equipmen/equipment01.png" alt="معدة 01" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+01'">
+                    <h3>معدة 01</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment02.png" alt="معدة 02" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+02'">
+                    <h3>معدة 02</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment03.png" alt="معدة 03" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+03'">
+                    <h3>معدة 03</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment04.png" alt="معدة 04" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+04'">
+                    <h3>معدة 04</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment05.png" alt="معدة 05" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+05'">
+                    <h3>معدة 05</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment06.png" alt="معدة 06" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+06'">
+                    <h3>معدة 06</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment07.png" alt="معدة 07" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+07'">
+                    <h3>معدة 07</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment08.png" alt="معدة 08" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+08'">
+                    <h3>معدة 08</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment09.png" alt="معدة 09" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+09'">
+                    <h3>معدة 09</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment10.png" alt="معدة 10" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+10'">
+                    <h3>معدة 10</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment11.png" alt="معدة 11" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+11'">
+                    <h3>معدة 11</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment12.png" alt="معدة 12" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+12'">
+                    <h3>معدة 12</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment13.png" alt="معدة 13" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+13'">
+                    <h3>معدة 13</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment14.png" alt="معدة 14" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+14'">
+                    <h3>معدة 14</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment15.png" alt="معدة 15" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+15'">
+                    <h3>معدة 15</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment16.png" alt="معدة 16" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+16'">
+                    <h3>معدة 16</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment17.png" alt="معدة 17" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+17'">
+                    <h3>معدة 17</h3>
+                </div>
+                <div class="image-card">
+                    <img src="equipmen/equipment18.png" alt="معدة 18" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Equipment+18'">
+                    <h3>معدة 18</h3>
+                </div>
             </div>
 
-            <div class="tools-grid">
-                <!-- الصورة 1 -->
-                <div class="tool-card" id="tool-checksum">
-                    <img src="equipment/equipment01.jpg" alt="نافذة Checksum" class="tool-img">
-                    <h3>نافذة Checksum</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب القيمة الاختبارية للملفات الثنائية للتحقق من سلامتها.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>انقر على "Browse" لاختيار الملف.</li>
-                            <li>اختر خوارزمية الحساب (CRC32, MD5, SHA-1).</li>
-                            <li>انقر على "Calculate".</li>
-                            <li>قارن القيمة الناتجة مع القيمة الأصلية.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 2 -->
-                <div class="tool-card" id="tool-emmc">
-                    <img src="equipment/equipment02.jpg" alt="نافذة EMMC Extractor" class="tool-img">
-                    <h3>نافذة EMMC Extractor</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> استخراج محتويات ذاكرة EMMC من ملفات image.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>حدد مصدر البيانات: ملف Image أو جهاز متصل.</li>
-                            <li>حدد القسم الذي تريد استخراجه.</li>
-                            <li>اختر مجلد الوجهة.</li>
-                            <li>انقر على "Start Extraction".</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 3 -->
-                <div class="tool-card" id="tool-scatter">
-                    <img src="equipment/equipment03.jpg" alt="نافذة Scatter Generator" class="tool-img">
-                    <h3>نافذة Scatter Generator</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إنشاء ملف scatter لأدوات التحميل مثل SP Flash Tool.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>قم بتحميل ملف الفيرمير الرئيسي.</li>
-                            <li>البرنامج يحلل الملف تلقائياً.</li>
-                            <li>راجع العناوين التي تم إنشاؤها.</li>
-                            <li>انقر على "Generate" للحفظ.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 4 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment04.jpg" alt="نافذة Thermal Management" class="tool-img">
-                    <h3>نافذة Thermal Management</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> مراقبة درجات حرارة مكونات الشاشة وإدارة التبريد.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>اتصل بالشاشة عبر المنفذ التسلسلي.</li>
-                            <li>ستظهر قراءات درجة الحرارة.</li>
-                            <li>اضبط عتبة التحذير أو سرعة المروحة.</li>
-                            <li>يمكن تنشيط التبريد التلقائي.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 5 -->
-                <div class="tool-card" id="tool-adb">
-                    <img src="equipment/equipment05.jpg" alt="نافذة ADB Commands" class="tool-img">
-                    <h3>نافذة ADB Commands</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إرسال أوامر ADB إلى جهاز أندرويد أو شاشة ذكية.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>تفعيل وضع المطور و USB Debugging على الجهاز.</li>
-                            <li>اتصل بالجهاز عبر USB أو Wi-Fi.</li>
-                            <li>اكتب الأمر في حقل النص.</li>
-                            <li>انقر على "Send" للتنفيذ.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 6 -->
-                <div class="tool-card" id="tool-amlogic">
-                    <img src="equipment/equipment06.jpg" alt="نافذة Amlogic Unpack" class="tool-img">
-                    <h3>نافذة Amlogic Unpack</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> فك ضغط ملفات فيرمير معالجات Amlogic.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>حدد ملف الفيرمير الخاص بـ Amlogic.</li>
-                            <li>حدد مجلد الوجهة.</li>
-                            <li>انقر على "Unpack".</li>
-                            <li>ستجد الملفات المستخرجة مثل boot.img.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 7 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment07.jpg" alt="نافذة Fake Success Detector" class="tool-img">
-                    <h3>نافذة Fake Success Detector</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تحليل سجلات التحميل لاكتشاف العمليات الفاشلة التي تظهر ناجحة.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>الصق محتوى سجل التحميل في النافذة.</li>
-                            <li>انقر على "Analyze".</li>
-                            <li>ستبحث الأداة عن أنماط الخطأ المخفية.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 8 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment08.jpg" alt="نافذة Firmware Links" class="tool-img">
-                    <h3>نافذة Firmware Links</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> قاعدة بيانات تحتوي على روابط لتنزيل فيرميرات وبرامج تشغيل.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>ابحث عن طراز الشاشة أو اللوحة.</li>
-                            <li>ستظهر قائمة بالروابط المتاحة.</li>
-                            <li>انقر على الرابط للنسخ أو التنزيل.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 9 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment09.jpg" alt="أداة LVDS Calculator" class="tool-img">
-                    <h3>أداة LVDS Calculator</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب معلمات إشارة LVDS المستخدمة في لوحة التحكم.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>أدخل دقة الشاشة وعدد الألوان.</li>
-                            <li>أدخل تردد التحديث.</li>
-                            <li>ستحسب الأداة تردد البيكسل المطلوب.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 10 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment10.jpg" alt="نافذة Matar Unpacker" class="tool-img">
-                    <h3>نافذة Matar Unpacker</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> أداة مخصصة لفك ضغط ملفات فيرمير خاصة بتنسيقات غير شائعة.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>اختر ملف الفيرمير المشفر.</li>
-                            <li>قد تحتاج إلى إدخال مفتاح فك.</li>
-                            <li>انقر على "Unpack" للبدء.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 11 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment11.jpg" alt="نافذة Panel Info Decoder" class="tool-img">
-                    <h3>نافذة Panel Info Decoder</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> فك تشفير معلومات اللوحة المخزنة في ذاكرة EEPROM.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>اقرأ محتويات ذاكرة EEPROM.</li>
-                            <li>الصق البيانات السداسية عشري في النافذة.</li>
-                            <li>انقر على "Decode" للتحويل.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 12 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment12.jpg" alt="أداة Power Supply Calculator" class="tool-img">
-                    <h3>أداة Power Supply Calculator</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب متطلبات الطاقة للوحة بناءً على الجهد والتيار.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>أدخل عدد ومواصفات المكونات.</li>
-                            <li>حدد جهد التشغيل لكل منها.</li>
-                            <li>ستحسب الأداة إجمالي التيار والطاقة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 13 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment13.jpg" alt="نافذة Realtek Unpack" class="tool-img">
-                    <h3>نافذة Realtek Unpack</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> فك وتحليل ملفات فيرمير معالجات Realtek.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>حدد ملف الفيرمير الخاص بـ Realtek.</li>
-                            <li>اختر مجلد الاستخراج.</li>
-                            <li>انقر على "Unpack".</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 14 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment14.jpg" alt="أداة Resolution Converter" class="tool-img">
-                    <h3>أداة Resolution Converter</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تحويل قيم الدقة بين الصيغ المختلفة.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>أدخل الدقة بصيغة ما.</li>
-                            <li>ستظهر الصيغ الأخرى تلقائياً.</li>
-                            <li>يمكن التحويل من قيمة مسجلة إلى دقة مفهومة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 15 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment15.jpg" alt="نافذة Screen Size Calculator" class="tool-img">
-                    <h3>نافذة Screen Size Calculator</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب القطر الفعلي للشاشة بناءً على أبعادها.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>أدخل القطر بالبوصة للحصول على الأبعاد.</li>
-                            <li>أو أدخل الطول والعرض للحصول على القطر.</li>
-                            <li>تساعد في تحديد لوحة بديلة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 16 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment16.jpg" alt="نافذة Symptom Diagnosis" class="tool-img">
-                    <h3>نافذة Symptom Diagnosis</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> أداة مساعدة تشخيصية تقترح مكونات محتملة للتلف.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>اختر العرض من القائمة المنسدلة.</li>
-                            <li>أدخل ملاحظات إضافية.</li>
-                            <li>انقر على "Diagnose" لعرض قائمة المراجعة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 17 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment17.jpg" alt="نافذة T-Con Board Tester" class="tool-img">
-                    <h3>نافذة T-Con Board Tester</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إجراء فحص ذاتي أو إرسال إشارات اختبارية إلى لوحة التحكم.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>قم بتوصيل اللوحة بالبرنامج.</li>
-                            <li>اختر نوع الاختبار.</li>
-                            <li>شغل الاختبار ولاحظ رد فعل اللوحة.</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- الصورة 18 -->
-                <div class="tool-card">
-                    <img src="equipment/equipment18.jpg" alt="نافذة Splash Screen Editor" class="tool-img">
-                    <h3>نافذة Splash Screen Editor</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تحرير وتعديل صورة شاشة التمهيد وتحميلها على الجهاز.</p>
-                    <div class="usage-steps">
-                        <strong>خطوات الاستخدام:</strong>
-                        <ol>
-                            <li>افتح صورة الشعار الحالية أو ابدأ بصورة جديدة.</li>
-                            <li>عدل الصورة ضمن القيود المسموحة.</li>
-                            <li>حفظ الملف وحمله على الشاشة.</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="section-description">
+                <h3>نبذة عن أدوات التوصيل والمعدات</h3>
+                <p>
+                    أدوات التوصيل والمعدات الإلكترونية تشكل جزءاً أساسياً من أي مشروع تقني احترافي. تتضمن هذه الفئة مجموعة متنوعة من الأدوات والمعدات المستخدمة في تركيب وصيانة واختبار الأنظمة الإلكترونية. من بين هذه الأدوات نجد الموصلات، المحولات، أجهزة القياس، معدات اللحام، وأدوات التشخيص المتقدمة. كل أداة مصممة خصيصاً لتسهيل عمليات معينة وضمان دقة وجودة العمل.
+                </p>
+                <p>
+                    استخدام الأدوات المناسبة يعد أمراً بالغ الأهمية لضمان نجاح أي مشروع إلكتروني. الأدوات عالية الجودة لا توفر الوقت والجهد فحسب، بل تضمن أيضاً الحصول على نتائج دقيقة وموثوقة. من المهم اختيار المعدات التي تتناسب مع نوع العمل المطلوب والتأكد من صيانتها بشكل دوري للحفاظ على أدائها الأمثل. يجب على المهندسين والفنيين الاستثمار في أدوات عالية الجودة لضمان تنفيذ مشاريع احترافية وآمنة.
+                </p>
             </div>
         </section>
 
-        <!-- قسم الواجهات -->
-        <section id="software" class="content-section">
-            <h2 class="section-title">💻 قسم الواجهات</h2>
-            <p>يحتوي على واجهات المستخدم والوحدات الداخلية الرئيسية لبرنامج MGTerminal.</p>
-
-            <div class="tools-grid">
-                <!-- الصورة 1 -->
-                <div class="tool-card">
-                    <img src="software/software01.jpg" alt="واجهة ConnectionView" class="tool-img">
-                    <h3>واجهة ConnectionView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إدارة الاتصال التسلسلي بالشاشة.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اختر منفذ COM من القائمة.</li>
-                            <li>اضبط سرعة الباود.</li>
-                            <li>انقر على "فتح الاتصال".</li>
-                            <li>سيظهر مؤشر حالة الاتصال باللون الأخضر.</li>
-                        </ol>
-                    </div>
+        <!-- القسم الثالث: واجهة البرنامج والأدوات -->
+        <section id="software" class="section">
+            <h2 class="section-title">💻 واجهة البرنامج والأدوات البرمجية</h2>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="software/software01.png" alt="واجهة 01" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Software+01'">
+                    <h3>الواجهة الرئيسية</h3>
+                    <p>واجهة المستخدم الرئيسية لبرنامج GlcTerminal توفر بيئة عمل متكاملة وسهلة الاستخدام، مع تصميم عصري يجمع بين الأناقة والوظائف المتقدمة للتحكم الكامل في جميع جوانب المشروع.</p>
                 </div>
-
-                <!-- الصورة 2 -->
-                <div class="tool-card">
-                    <img src="software/software02.jpg" alt="واجهة ConsoleView" class="tool-img">
-                    <h3>واجهة ConsoleView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> نافذة طرفية لعرض البيانات وإرسال الأوامر.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>يجب أن يكون الاتصال مفتوحاً.</li>
-                            <li>البيانات الواردة تظهر في المنطقة البيضاء.</li>
-                            <li>اكتب الأمر في الحقل السفلي واضغط Enter.</li>
-                            <li>يمكن مسح الشاشة أو حفظ السجل.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software02.png" alt="أداة 02" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+02'">
+                    <h3>أداة حساب الكابلات</h3>
+                    <p>أداة ذكية لحساب المقاومة، السعة، والمعاوقة للكابلات المختلفة. استخدم هذه الأداة بإدخال طول الكابل ونوعه للحصول على حسابات دقيقة فورية، مما يساعد في تصميم الدوائر بشكل احترافي.</p>
                 </div>
-
-                <!-- الصورة 3 -->
-                <div class="tool-card">
-                    <img src="software/software03.jpg" alt="واجهة BackLightView" class="tool-img">
-                    <h3>واجهة BackLightView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> التحكم في إضاءة خلفية الشاشة.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اتصل بالشاشة.</li>
-                            <li>استخدم زر التشغيل/الإطفاء.</li>
-                            <li>اسحب شريط التمرير لضبط السطوع.</li>
-                            <li>انقر على "Read Status" لفحص الحالة.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software03.png" alt="أداة 03" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+03'">
+                    <h3>محلل الإشارات</h3>
+                    <p>أداة متقدمة لتحليل الإشارات الكهربائية وعرض الموجات بدقة عالية. يمكنك استخدامها من خلال توصيل المجسات بالدائرة ومراقبة الإشارات في الوقت الفعلي مع إمكانية حفظ البيانات للتحليل لاحقاً.</p>
                 </div>
-
-                <!-- الصورة 4 -->
-                <div class="tool-card">
-                    <img src="software/software04.jpg" alt="واجهة CapacitorView" class="tool-img">
-                    <h3>واجهة CapacitorView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> أداة مساعدة لحساب قيمة المكثفات وفحصها.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اختر نوع المكثف.</li>
-                            <li>أدخل القيمة والسعة والجهد.</li>
-                            <li>ستعرض الواجهة معلومات عنه.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software04.png" alt="أداة 04" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+04'">
+                    <h3>مدير التوصيلات</h3>
+                    <p>أداة شاملة لإدارة وتنظيم التوصيلات في مشاريعك. استخدمها لتوثيق جميع الوصلات، تتبع الكابلات، وإنشاء مخططات تفصيلية للنظام بأكمله مع إمكانية التصدير والطباعة.</p>
                 </div>
-
-                <!-- الصورة 5 -->
-                <div class="tool-card">
-                    <img src="software/software05.jpg" alt="واجهة DivideView" class="tool-img">
-                    <h3>واجهة DivideView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب قيم مقسم الجهد أو نسب الإشارات.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>أدخل قيمة المقاومتين.</li>
-                            <li>أدخل جهد الدخل.</li>
-                            <li>ستحسب جهد الخرج تلقائياً.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software05.png" alt="أداة 05" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+05'">
+                    <h3>حاسبة الجهد والتيار</h3>
+                    <p>أداة سريعة لحساب الجهد والتيار والمقاومة باستخدام قانون أوم. أدخل قيمتين من الثلاثة وستحصل على القيمة الثالثة تلقائياً، مع عرض الصيغ المستخدمة للأغراض التعليمية.</p>
                 </div>
-
-                <!-- الصورة 6 -->
-                <div class="tool-card">
-                    <img src="software/software06.jpg" alt="واجهة ResistorView" class="tool-img">
-                    <h3>واجهة ResistorView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حساب قيم المقاومات وقراءة ألوان الشرائط.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>لحساب القيمة من الألوان: اختر ألوان الشرائط.</li>
-                            <li>لتحويل القيمة إلى ألوان: أدخل قيمة المقاومة.</li>
-                            <li>ستظهر النتيجة مع شرح.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software06.png" alt="أداة 06" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+06'">
+                    <h3>مولد التقارير</h3>
+                    <p>أداة احترافية لإنشاء تقارير فنية شاملة عن مشاريعك. اختر عناصر التقرير المطلوبة، أضف الصور والبيانات، وقم بتصدير التقرير بصيغة PDF أو Word جاهزاً للطباعة والعرض.</p>
                 </div>
-
-                <!-- الصورة 7 -->
-                <div class="tool-card">
-                    <img src="software/software07.jpg" alt="واجهة ZenerView" class="tool-img">
-                    <h3>واجهة ZenerView</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> أداة للدايودات الزينر المستخدمة في تنظيم الجهد.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اختر جهد الزينر من القائمة.</li>
-                            <li>أدخل جهد الدخل والتيار.</li>
-                            <li>ستحسب الجهد عبر الزينر والتيار.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software07.png" alt="أداة 07" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+07'">
+                    <h3>محول الوحدات</h3>
+                    <p>أداة عملية لتحويل بين مختلف الوحدات الكهربائية والإلكترونية. حول بين الوحدات بسهولة مثل الأوم، الكيلو أوم، الميجا أوم، وكذلك وحدات الجهد والتيار والطاقة بدقة عالية.</p>
                 </div>
-
-                <!-- الصورة 8 -->
-                <div class="tool-card">
-                    <img src="software/software08.jpg" alt="ملف App.xaml" class="tool-img">
-                    <h3>ملف App.xaml</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> ملف تعريف التطبيق الرئيسي في WPF.</p>
-                    <div class="usage-steps">
-                        <strong>ملاحظة:</strong>
-                        <ol>
-                            <li>ملف تكوين، ليس له واجهة مستخدم.</li>
-                            <li>يتم تشغيله تلقائياً عند بدء البرنامج.</li>
-                            <li>يمكن تعديله لتغيير المظهر العام.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software08.png" alt="أداة 08" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+08'">
+                    <h3>مكتبة المكونات</h3>
+                    <p>مكتبة شاملة تحتوي على آلاف المكونات الإلكترونية مع مواصفاتها الكاملة. ابحث عن أي مكون واحصل على داتا شيت، المواصفات التقنية، والأسعار التقريبية من موردين مختلفين.</p>
                 </div>
-
-                <!-- الصورة 9 -->
-                <div class="tool-card">
-                    <img src="software/software09.jpg" alt="واجهة إعدادات فرعية" class="tool-img">
-                    <h3>واجهة إعدادات فرعية</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> واجهة للإعدادات المتقدمة لأحد الأدوات.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>يتم الوصول إليها من زر "Settings".</li>
-                            <li>عدل القيم حسب الحاجة.</li>
-                            <li>انقر على "Save" للحفظ.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software09.png" alt="أداة 09" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+09'">
+                    <h3>مخطط الدوائر</h3>
+                    <p>أداة رسم احترافية لتصميم مخططات الدوائر الإلكترونية. اسحب وأفلت المكونات، قم بتوصيلها، وأضف التسميات والقيم. يدعم التصدير لصيغ متعددة وطباعة عالية الجودة.</p>
                 </div>
-
-                <!-- الصورة 10 -->
-                <div class="tool-card">
-                    <img src="software/software10.jpg" alt="واجهة تسجيل الدخول" class="tool-img">
-                    <h3>واجهة تسجيل الدخول</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> واجهة لمصادقة المستخدم قبل استخدام بعض الميزات المتقدمة.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>أدخل اسم المستخدم وكلمة المرور.</li>
-                            <li>انقر على "Login".</li>
-                            <li>عند النجاح، ستفتح الواجهة الرئيسية.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software10.png" alt="أداة 10" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+10'">
+                    <h3>محاكي الدوائر</h3>
+                    <p>محاكي متقدم لاختبار الدوائر الإلكترونية قبل التنفيذ الفعلي. قم ببناء دائرتك، شغل المحاكاة، وراقب سلوك الدائرة في ظروف مختلفة لاكتشاف المشاكل قبل حدوثها.</p>
                 </div>
-
-                <!-- الصورة 11 -->
-                <div class="tool-card">
-                    <img src="software/software11.jpg" alt="واجهة إدارة الملفات" class="tool-img">
-                    <h3>واجهة إدارة الملفات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض وتنظيم الملفات المحلية على الكمبيوتر المتعلقة بالمشروع.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>تصفح المجلدات باستخدام الشجرة على اليمين.</li>
-                            <li>انقر على ملف لمعاينته.</li>
-                            <li>استخدم أزرار "فتح"، "حذف"، "رفع".</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software11.png" alt="أداة 11" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+11'">
+                    <h3>حاسبة المكثفات</h3>
+                    <p>أداة متخصصة لحساب قيم المكثفات المتصلة على التوالي أو التوازي. أدخل قيم المكثفات واحصل على القيمة الكلية فوراً مع رسم توضيحي للتوصيلة المستخدمة.</p>
                 </div>
-
-                <!-- الصورة 12 -->
-                <div class="tool-card">
-                    <img src="software/software12.jpg" alt="واجهة تحديث البرنامج" class="tool-img">
-                    <h3>واجهة تحديث البرنامج</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> التحقق من وجود تحديثات جديدة وتثبيتها.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>انقر على "Check for Updates".</li>
-                            <li>إذا وجد تحديث، انقر على "Download".</li>
-                            <li>بعد التحميل، انقر على "Install".</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software12.png" alt="أداة 12" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+12'">
+                    <h3>حاسبة المقاومات</h3>
+                    <p>أداة ذكية لقراءة قيم المقاومات من الألوان وحساب المقاومات المتصلة. اختر ألوان الحلقات أو أدخل القيم مباشرة للحصول على حسابات دقيقة للمقاومة الكلية وتحمل الخطأ.</p>
                 </div>
-
-                <!-- الصورة 13 -->
-                <div class="tool-card">
-                    <img src="software/software13.jpg" alt="واجهة السجل والتفاصيل" class="tool-img">
-                    <h3>واجهة السجل والتفاصيل</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض سجل تفصيلي لعمليات البرنامج والأخطاء.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اختر نوع السجل من القائمة (أخطاء، تحذيرات، معلومات).</li>
-                            <li>استخدم البحث للعثور على مدخلات محددة.</li>
-                            <li>يمكن تصدير السجل إلى ملف نصي.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software13.png" alt="أداة 13" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+13'">
+                    <h3>مراقب الطاقة</h3>
+                    <p>أداة لمراقبة استهلاك الطاقة في الدوائر والأجهزة. قم بتوصيل الأداة بالدائرة لقياس الطاقة المستهلكة، الجهد، التيار، معامل القدرة، وحساب التكلفة التقريبية للتشغيل.</p>
                 </div>
-
-                <!-- الصورة 14 -->
-                <div class="tool-card">
-                    <img src="software/software14.jpg" alt="واجهة الإحصائيات" class="tool-img">
-                    <h3>واجهة الإحصائيات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض إحصائيات عن استخدام البرنامج والأدوات.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>تفتح الواجهة تلقائياً أو من القائمة.</li>
-                            <li>تظهر مخططات لأكثر الأدوات استخداماً.</li>
-                            <li>تعرض عدد الجلسات ووقت التشغيل.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software14.png" alt="أداة 14" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+14'">
+                    <h3>مولد الموجات</h3>
+                    <p>مولد إشارات قابل للبرمجة لإنتاج موجات بأشكال مختلفة (جيبية، مربعة، مثلثة، منشارية). اضبط التردد، السعة، والإزاحة حسب احتياجاتك للاختبار والمعايرة.</p>
                 </div>
-
-                <!-- الصورة 15 -->
-                <div class="tool-card">
-                    <img src="software/software15.jpg" alt="واجهة المساعدة والدعم" class="tool-img">
-                    <h3>واجهة المساعدة والدعم</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> الوصول إلى الوثائق وشروحات الفيديو وتقديم طلب دعم.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>تصفح المواضيع من الفهرس على اليسار.</li>
-                            <li>ابحث عن كلمة محددة في حقل البحث.</li>
-                            <li>لطلب الدعم، املأ النموذج وأرسله.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software15.png" alt="أداة 15" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+15'">
+                    <h3>كاشف الأعطال</h3>
+                    <p>أداة تشخيصية ذكية لاكتشاف الأعطال في الدوائر الإلكترونية. استخدم المعالج الإرشادي لتحديد نوع العطل، واتبع خطوات الاختبار للوصول إلى الحل الصحيح بسرعة وكفاءة.</p>
                 </div>
-
-                <!-- الصورة 16 -->
-                <div class="tool-card">
-                    <img src="software/software16.jpg" alt="واجهة المظهر والإعدادات" class="tool-img">
-                    <h3>واجهة المظهر والإعدادات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> تخصيص مظهر البرنامج (الوضع الداكن/الفاتح، الألوان).</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>اختر الوضع المفضل (داكن، فاتح، تلقائي).</li>
-                            <li>عدل ألوان الواجهة من الخيارات المتقدمة.</li>
-                            <li>التغييرات تطبق فوراً.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software16.png" alt="أداة 16" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+16'">
+                    <h3>حاسبة الترددات</h3>
+                    <p>أداة لحساب ترددات الرنين ومعاملات الدوائر الرنانة. أدخل قيم المكثف والملف وستحصل على تردد الرنين، معامل الجودة، وعرض النطاق الترددي للدائرة.</p>
                 </div>
-
-                <!-- الصورة 17 -->
-                <div class="tool-card">
-                    <img src="software/software17.jpg" alt="واجهة الاختصارات" class="tool-img">
-                    <h3>واجهة الاختصارات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض وتعديل اختصارات لوحة المفاتيح للبرنامج.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>يعرض جدولاً بالاختصارات الحالية.</li>
-                            <li>انقر على أي اختصار لتعديله.</li>
-                            <li>اضغط على مجموعة المفاتيح الجديدة ثم "حفظ".</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software17.png" alt="أداة 17" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+17'">
+                    <h3>محلل الطيف</h3>
+                    <p>أداة متقدمة لتحليل الطيف الترددي للإشارات. راقب مكونات الإشارة في النطاق الترددي، اكتشف التشويش والضوضاء، وحلل جودة الإشارة باستخدام واجهة احترافية سهلة الاستخدام.</p>
                 </div>
-
-                <!-- الصورة 18 -->
-                <div class="tool-card">
-                    <img src="software/software18.jpg" alt="واجهة استيراد/تصدير الإعدادات" class="tool-img">
-                    <h3>واجهة استيراد/تصدير الإعدادات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> حفظ إعدادات البرنامج في ملف لاستخدامها على جهاز آخر.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>للتخزين: انقر على "Export" واختر مكان الحفظ.</li>
-                            <li>لاستعادة: انقر على "Import" واختر الملف.</li>
-                            <li>أعد تشغيل البرنامج لتفعيل الإعدادات.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software18.png" alt="أداة 18" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+18'">
+                    <h3>مدير المشاريع</h3>
+                    <p>أداة شاملة لإدارة مشاريعك الإلكترونية. نظم ملفاتك، تتبع التقدم، أضف الملاحظات والمواعيد، وشارك المشروع مع فريق العمل بسهولة مع ميزة المزامنة السحابية.</p>
                 </div>
-
-                <!-- الصورة 19 -->
-                <div class="tool-card">
-                    <img src="software/software19.jpg" alt="واجهة معلومات النظام" class="tool-img">
-                    <h3>واجهة معلومات النظام</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض معلومات عن نظام التشغيل والإصدار والموارد.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>تفتح تلقائياً عند النقر على "About".</li>
-                            <li>تعرض إصدار البرنامج، نظام التشغيل، الذاكرة المستخدمة.</li>
-                            <li>مفيدة عند تقديم بلاغ خطأ.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software19.png" alt="أداة 19" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+19'">
+                    <h3>حاسبة مصادر الطاقة</h3>
+                    <p>أداة لتصميم وحساب مواصفات مصادر الطاقة. احسب قيم المكونات المطلوبة، الكفاءة المتوقعة، التبريد اللازم، واحصل على توصيات لأفضل التصاميم حسب متطلباتك.</p>
                 </div>
-
-                <!-- الصورة 20 -->
-                <div class="tool-card">
-                    <img src="software/software20.jpg" alt="واجهة الإخطارات" class="tool-img">
-                    <h3>واجهة الإخطارات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> عرض الإخطارات والتنبيهات من البرنامج (اكتمال مهمة، خطأ).</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>تظهر الإخطارات تلقائياً كشريط منبثق.</li>
-                            <li>يمكن عرض الأرشيف من هذه الواجهة.</li>
-                            <li>يمكن مسح الإخطارات الفردية أو الكل.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software20.png" alt="أداة 20" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+20'">
+                    <h3>محول الأكواد</h3>
+                    <p>أداة لتحويل بين أنظمة العد المختلفة (ثنائي، ثماني، عشري، سداسي عشر) وأكواد البيانات. مفيدة جداً في البرمجة والإلكترونيات الرقمية مع دعم للعمليات الحسابية بين الأنظمة المختلفة.</p>
                 </div>
-
-                <!-- الصورة 21 -->
-                <div class="tool-card">
-                    <img src="software/software21.jpg" alt="واجهة الملف الشخصي" class="tool-img">
-                    <h3>واجهة الملف الشخصي</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إدارة الحساب الشخصي للمستخدم (إذا كان البرنامج يدعم حسابات).</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>عرض المعلومات الأساسية.</li>
-                            <li>تغيير صورة الملف الشخصي.</li>
-                            <li>تعديل كلمة المرور.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software21.png" alt="أداة 21" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+21'">
+                    <h3>مصمم لوحات الدوائر المطبوعة</h3>
+                    <p>أداة احترافية لتصميم لوحات الدوائر المطبوعة (PCB). حول مخططك الكهربائي إلى تصميم PCB، قم بترتيب المكونات، رسم المسارات، وصدر ملفات Gerber الجاهزة للتصنيع.</p>
                 </div>
-
-                <!-- الصورة 22 -->
-                <div class="tool-card">
-                    <img src="software/software22.jpg" alt="واجهة المهام المجدولة" class="tool-img">
-                    <h3>واجهة المهام المجدولة</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> جدولة مهام معينة (مثل النسخ الاحتياطي) لتشغيلها تلقائياً.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>انقر على "إضافة مهمة جديدة".</li>
-                            <li>حدد المهمة والوقت والتكرار.</li>
-                            <li>المهام المجدولة تظهر في القائمة.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software22.png" alt="أداة 22" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+22'">
+                    <h3>حاسبة مقاومة الأسلاك</h3>
+                    <p>أداة لحساب مقاومة الأسلاك النحاسية والألمنيوم حسب الطول والقطر. أدخل مواصفات السلك واحصل على المقاومة الكلية، انخفاض الجهد المتوقع، والقدرة المفقودة في السلك.</p>
                 </div>
-
-                <!-- الصورة 23 -->
-                <div class="tool-card">
-                    <img src="software/software23.jpg" alt="واجهة الإضافات" class="tool-img">
-                    <h3>واجهة الإضافات</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إدارة الإضافات أو الوظائف الإضافية للبرنامج.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>يعرض قائمة بالإضافات المثبتة.</li>
-                            <li>تمكين أو تعطيل أي إضافة.</li>
-                            <li>تثبيت إضافات جديدة من السوق.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software23.png" alt="أداة 23" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+23'">
+                    <h3>مراقب درجة الحرارة</h3>
+                    <p>أداة لمراقبة درجة حرارة المكونات والأجهزة. قم بتوصيل المستشعرات وراقب درجات الحرارة في الوقت الفعلي مع إنذارات قابلة للتخصيص وتسجيل البيانات للتحليل طويل المدى.</p>
                 </div>
-
-                <!-- الصورة 24 -->
-                <div class="tool-card">
-                    <img src="software/software24.jpg" alt="واجهة النسخ الاحتياطي" class="tool-img">
-                    <h3>واجهة النسخ الاحتياطي</h3>
-                    <p class="tool-desc"><strong>الوظيفة:</strong> إنشاء واستعادة نسخ احتياطية من إعدادات البرنامج والمشاريع.</p>
-                    <div class="usage-steps">
-                        <strong>كيفية العمل:</strong>
-                        <ol>
-                            <li>لإنشاء نسخة: حدد العناصر وانقر على "Backup".</li>
-                            <li>لاستعادة: اختر ملف النسخة وانقر على "Restore".</li>
-                            <li>يمكن جدولة النسخ الاحتياطي التلقائي.</li>
-                        </ol>
-                    </div>
+                <div class="image-card">
+                    <img src="software/software24.png" alt="أداة 24" onerror="this.src='https://via.placeholder.com/280x220/4a148c/00bfff?text=Tool+24'">
+                    <h3>أداة الفحص والاختبار</h3>
+                    <p>مجموعة شاملة من أدوات الفحص والاختبار الأوتوماتيكية. قم بإجراء اختبارات شاملة للدوائر، المكونات، والأنظمة الكاملة مع تقارير مفصلة ونتائج دقيقة يمكن حفظها وطباعتها.</p>
                 </div>
+            </div>
+
+            <div class="section-description">
+                <h3>نبذة عن البرنامج والأدوات</h3>
+                <p>
+                    برنامج GlcTerminal-Help هو منصة متكاملة مصممة خصيصاً للمهندسين والفنيين والهواة في مجال الإلكترونيات. يجمع البرنامج بين واجهة مستخدم عصرية وسهلة الاستخدام ومجموعة واسعة من الأدوات الاحترافية التي تغطي كل جوانب العمل الإلكتروني. من تصميم الدوائر وحتى الاختبار والصيانة، يوفر البرنامج كل ما تحتاجه في مكان واحد.
+                </p>
+                <p>
+                    تتميز أدوات البرنامج بدقتها العالية وسهولة استخدامها، حيث تم تطويرها بناءً على احتياجات المستخدمين الفعلية. كل أداة مصممة لحل مشكلة محددة أو تسهيل مهمة معينة، مما يوفر الوقت والجهد ويقلل من احتمالية الأخطاء. البرنامج يدعم التحديثات المستمرة ويتضمن قاعدة بيانات ضخمة من المكونات والمواصفات التقنية، مما يجعله أداة لا غنى عنها لكل من يعمل في المجال الإلكتروني.
+                </p>
             </div>
         </section>
 
         <footer>
-            <p><strong>MGTerminal الدليل الاحترافي © 2024</strong> | جميع الصور الـ71 مرتبة في أقسامها مع الشروحات الكاملة.</p>
+            <h3>GlcTerminal-Help</h3>
+            <p>© 2024 جميع الحقوق محفوظة | دليلك الشامل للكابلات والمعدات والأدوات الإلكترونية</p>
+            <p style="margin-top: 15px; opacity: 0.8;">تم التطوير بواسطة فريق GlcTerminal</p>
         </footer>
     </div>
 
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            event.target.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
